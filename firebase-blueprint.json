@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "flora": {
+      "title": "O'simliklar",
+      "description": "Orol dengizi hududidagi o'simlik turlari",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "O'simlik nomi" },
+        "description": { "type": "string", "description": "Qisqacha ma'lumot" },
+        "imagePrompt": { "type": "string", "description": "AI uchun rasm generatsiya prompti" },
+        "imageUrl": { "type": "string", "description": "Rasm URL manzili" },
+        "fact": { "type": "string", "description": "Real fakt" }
+      },
+      "required": ["name", "description"]
+    },
+    "fauna": {
+      "title": "Hayvonot olami",
+      "description": "Orol dengizi hududidagi hayvon turlari",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Hayvon nomi" },
+        "description": { "type": "string", "description": "Qisqacha ma'lumot" },
+        "imagePrompt": { "type": "string", "description": "AI uchun rasm generatsiya prompti" },
+        "imageUrl": { "type": "string", "description": "Rasm URL manzili" },
+        "fact": { "type": "string", "description": "Real fakt" }
+      },
+      "required": ["name", "description"]
+    },
+    "history": {
+      "title": "Tarix",
+      "description": "Orol dengizining o'tmishi va o'zgarishi",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Tarixiy davr yoki voqea sarlavhasi" },
+        "period": { "type": "string", "description": "Vaqt oralig'i" },
+        "description": { "type": "string", "description": "Batafsil ma'lumot" },
+        "imagePrompt": { "type": "string", "description": "AI uchun rasm generatsiya prompti" },
+        "imageUrl": { "type": "string", "description": "Rasm URL manzili" }
+      },
+      "required": ["title", "description"]
+    },
+    "feedback": {
+      "title": "Takliflar",
+      "description": "Foydalanuvchilardan kelgan taklif va mulohazalar",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Foydalanuvchi ismi" },
+        "email": { "type": "string", "description": "Email manzili", "format": "email" },
+        "message": { "type": "string", "description": "Xabar matni" },
+        "status": { "type": "string", "enum": ["pending", "reviewed", "resolved"], "description": "Taklif holati" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Yuborilgan vaqti" }
+      },
+      "required": ["name", "email", "message", "status"]
+    },
+    "users": {
+      "title": "Foydalanuvchilar",
+      "description": "Nomer va parol orqali ro'yxatdan o'tgan foydalanuvchilar",
+      "type": "object",
+      "properties": {
+        "phone": { "type": "string", "description": "Telefon raqami" },
+        "password": { "type": "string", "description": "Parol (Hashed or plain for this prototype)" },
+        "isAdmin": { "type": "boolean", "description": "Adminlik huquqi" }
+      },
+      "required": ["phone", "password"]
+    }
+  },
+  "firestore": {
+    "flora": { "schema": "flora", "description": "Flora kolleksiyasi" },
+    "fauna": { "schema": "fauna", "description": "Fauna kolleksiyasi" },
+    "history": { "schema": "history", "description": "Tarix kolleksiyasi" },
+    "feedback": { "schema": "feedback", "description": "Takliflar kolleksiyasi" },
+    "users": { "schema": "users", "description": "Foydalanuvchilar kolleksiyasi" }
+  }
+}

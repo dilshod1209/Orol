@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orol Eco Portal</title>
+    <script>
+      // Safeguard against libraries trying to overwrite read-only fetch
+      (function() {
+        const originalFetch = window.fetch;
+        try {
+          Object.defineProperty(window, 'fetch', {
+            configurable: false,
+            enumerable: true,
+            get: () => originalFetch,
+            set: (v) => { console.warn('Attempt to overwrite fetch blocked.'); }
+          });
+        } catch (e) {
+          // If defineProperty fails, fallback to simple assignment if possible or ignore
+          window.fetch = originalFetch;
+        }
+      })();
+      window.global = window;
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
